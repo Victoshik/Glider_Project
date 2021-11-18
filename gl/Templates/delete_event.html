@@ -5,6 +5,6 @@
     <form action="" method="post">
       {% csrf_token %}
       <p>Вы уверены, что хотите удалить событие?</p>
-      <input type="submit" value="Confirm" />
+      <input type="submit" value="Удалить" />      <button href='{% url "event"  %}'>Отмена</button>
     </form>
 {% endblock content %}

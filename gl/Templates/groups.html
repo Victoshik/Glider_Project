@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<title>{{ title }}</title>
+<ul>
+
+  {% for i in object_list %}
+
+    <h3>{{ i.title }}</h3>
+     <p>Участники: </p>
+        <b><p id="main">- {{ i.persons }}</p></b>
+    {% if i.photo %}
+    <div><p><img class="img-article-left thumb" src="{{ i.photo.url }}" width="50" height="50"  align="left" vspace="5" hspace="5"></p></div>
+{% else %}
+    <div><img src="/static/images/social-group.png" width="50" height="50"  align="left" vspace="5" hspace="5"></div>
+{% endif %}
+           <h5><a href='{% url "edit_group" i.pk %}'>Редактировать группу   |</a><a href="{% url 'delete_group' i.pk %}">Удалить группу</a></h5>
+           <h5></h5>
+
+{% endfor %}
+    </ul>
+<hr>
+{% endblock %}

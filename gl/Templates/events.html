@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<title>{{ title }}</title>
+<ul>
+
+  {% for i in object_list %}
+    <h3>{{ i.title }}  </h3>
+    {% if i.done == True %}
+            <div><img src="/static/images/img_221824.png" width="50" height="50"></div>
+    {% else %}
+            <div><img  src="/static/images/lf.png" width="50" height="50"></div>
+    {% endif %}
+            <p>{{ i.date }}</p>
+    {% if i.groups %}
+    <p>Группы: </p>
+    {% for j in i.groups.all %}
+        <b><p id="main">- {{ j.title }}</p></b>
+    {% endfor %}
+    {% endif %}
+    {% if i.person %}
+
+    <p>Участники: </p>
+        {% for j in i.person.all %}
+        <b><p id="main">-{{ j.first_name}} {{ j.last_name}} ({{ j.username}})</p></b>
+    {% endfor %}
+    {% endif %}
+
+            <h5><a href='{% url "edit_event" i.pk %}'>Редактировать событие  |</a>
+                <a href="{% url 'delete_event' i.pk %}">Удалить событие</a></h5>
+<hr>
+{% endfor %}
+    </ul>
+
+{% endblock %}

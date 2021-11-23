@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<title>My Notes</title>
+<ul>
+
+  {% for i in object_list %}
+
+    <h3>{{ i.title }}  </h3>
+                {% if i.done == True %}
+            <div><img class="img_wrap" src="/static/images/img_221824.png" width="50" height="50"></div>
+            {% else %}
+            <div><img class="img_wrap" src="/static/images/lf.png" width="50" height="50"></div>
+            {% endif %}
+
+            <p>{{ i.date }}</p>
+            <p>{{ i.description }}</p>
+
+            <h5><a href='{% url "edit_note" i.pk %}'>Редактировать заметку   |</a>
+                <a href="{% url 'delete_note' i.pk %}">Удалить заметку</a></h5>
+            <h5></h5>
+    <hr>
+
+{% endfor %}
+    </ul>
+
+{% endblock %}

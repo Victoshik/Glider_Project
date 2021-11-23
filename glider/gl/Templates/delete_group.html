@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Удалить группу</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <p>Вы уверены, что хотите удалить группу?</p>
+      <input type="submit" value="Удалить" />      <button href='{% url "group"  %}'>Отмена</button>
+    </form>
+{% endblock content %}

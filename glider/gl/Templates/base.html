@@ -1,0 +1,111 @@
+{% load static %}
+{% load gl_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{title}}</title>
+	<link type="text/css" href="{% static '/css/styles.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static '/images/calendar.png' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<table class="table-page" border=0 cellpadding="0" cellspacing="0">
+<tr><td valign=top>
+{% block mainmenu %}
+		<div class="header">
+			<ul id="mainmenu" class="mainmenu">
+			<li class="logo"><a href="{% url 'index' %}"><div class="logo">
+				<img src="/static/images/calendar.png" width="50" height="50">
+			</div></a></li>
+{% for m in menu %}
+
+			<b><li><a href="{% url m.url_name %}">{{m.title}}</a></li></b>
+
+{% endfor %}
+				{% if request.user.is_authenticated %}
+				<b><li class="last"><a href="{% url 'profile' %}">{{ user.username }}</a> | <a href="{% url 'logout' %}">Выйти</a></li></b>
+				{% else %}
+				<b><li class="last"><a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a></li></b>
+				{% endif %}
+			</ul>
+			<div class="clear"></div>
+		</div>
+{% endblock mainmenu %}
+
+
+<table class="table-content" border=0 cellpadding="0" cellspacing="0">
+<tr>
+<!-- Sidebar слева -->
+	{% if request.user.is_authenticated %}
+	<td valign="top" class="left-chapters">
+	<ul id="leftchapters">
+
+
+		<b><li ><a href="{% url 'profile' %}">Моя страница</a></li>
+		<li ><a href="{% url 'group' %}">Группы</a></li>
+		<li ><a href="{% url 'event' %}">События</a></li>
+		<li><a href="{% url 'note' %}">Заметки</a></li></b>
+		<hr>
+
+		<li class="share">
+		<p>Обратная связь</p>
+		<a class="share-yt" href="https://www.instagram.com/vi.cat.oshik/?hl=ru" target="_blank" rel="nofollow">
+			<img src="/static/images/insta.jpg" width="100" height="100">
+		</a>
+			<a class="share-yt" href="https://vk.com/victoshik_paranoya" target="_blank" rel="nofollow">
+			<img src="/static/images/kisspng-social-media-computer-icons-vkontakte-football-player-5ac196a4c8cd66.6182565415226364528225.png" width="100" height="100">
+		</a>
+		</li>
+	</ul>
+
+</td>
+{% endif %}
+<td valign="top" class="content">
+
+
+	<div class="content-text">
+{% block content %}
+{% endblock %}
+{% if request.user.is_authenticated %}
+{% if page_obj.has_other_pages %}
+<nav class="list-pages">
+	<ul>
+		{% if page_obj.has_previous %}
+		<li class="page-num">
+			<a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+		</li>
+		{% endif %}
+		{% for p in paginator.page_range %}
+		{% if page_obj.number == p %}
+		<li class="page-num page-num-selected">{{ p }}</li>
+		{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+		<li class="page-num">
+			<a href="?page={{ p }}">{{ p }}</a>
+		</li>
+		{% endif %}
+		{% endfor %}
+		{% if page_obj.has_next %}
+		<li class="page-num">
+			<a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+		</li>
+		{% endif %}
+	</ul>
+</nav>
+{% endif %}
+	</div>
+
+
+</td></tr></table>
+</td></tr>
+{% endif %}
+<tr><td valign=top>
+	<div id="footer">
+		<p>&copy; 2021 Частичное или полное копирование информации с данного сайта для распространения на других ресурсах, в том числе и бумажных, строго запрещено.</p>
+	</div>
+</td></tr></table>
+
+</body>
+</html>

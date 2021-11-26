@@ -5,8 +5,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.GliderHome.as_view(), name='index'),
+    path('', views.home, name='index'),
     path('about/', views.about, name='about'),
+    path('templates/', views.templates, name='templates'),
     path('note/<int:pk>/delete/', views.NoteDeleteView.as_view(), name='delete_note'),
     path('note/<int:pk>/edit/', views.NoteUpdateView.as_view(), name='edit_note'),
     path('note/new/', views.NoteCreateView.as_view(), name='add_note'),

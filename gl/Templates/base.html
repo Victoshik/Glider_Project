@@ -20,11 +20,13 @@
 			<li class="logo"><a href="{% url 'index' %}"><div class="logo">
 				<img src="/static/images/calendar.png" width="50" height="50">
 			</div></a></li>
+{% if request.user.is_authenticated %}
 {% for m in menu %}
 
 			<b><li><a href="{% url m.url_name %}">{{m.title}}</a></li></b>
 
 {% endfor %}
+{% endif %}
 				{% if request.user.is_authenticated %}
 				<b><li class="last"><a href="{% url 'profile' %}">{{ user.username }}</a> | <a href="{% url 'logout' %}">Выйти</a></li></b>
 				{% else %}
@@ -47,16 +49,17 @@
 		<b><li ><a href="{% url 'profile' %}">Моя страница</a></li>
 		<li ><a href="{% url 'group' %}">Группы</a></li>
 		<li ><a href="{% url 'event' %}">События</a></li>
-		<li><a href="{% url 'note' %}">Заметки</a></li></b>
+		<li><a href="{% url 'note' %}">Заметки</a></li>
+		<li><a href="{% url 'templates' %}">Шаблоны</a></li></b>
 		<hr>
 
 		<li class="share">
 		<p>Обратная связь</p>
 		<a class="share-yt" href="https://www.instagram.com/vi.cat.oshik/?hl=ru" target="_blank" rel="nofollow">
-			<img src="/static/images/insta.jpg" width="100" height="100">
+			<img src="/static/images/insta.jpg" width="50" height="50">
 		</a>
 			<a class="share-yt" href="https://vk.com/victoshik_paranoya" target="_blank" rel="nofollow">
-			<img src="/static/images/kisspng-social-media-computer-icons-vkontakte-football-player-5ac196a4c8cd66.6182565415226364528225.png" width="100" height="100">
+			<img src="/static/images/kisspng-social-media-computer-icons-vkontakte-football-player-5ac196a4c8cd66.6182565415226364528225.png" width="50" height="50">
 		</a>
 		</li>
 	</ul>

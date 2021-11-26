@@ -30,7 +30,7 @@ class RegisterUser(DataMixin, CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('edit_profile')
+        return redirect('profile')
 
 
 class LoginUser(DataMixin, LoginView):

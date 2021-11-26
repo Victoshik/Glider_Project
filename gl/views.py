@@ -16,15 +16,14 @@ menu = [
         ]
 
 
-class GliderHome(DataMixin, ListView):
-    model = Events
-    template_name = 'index.html'
-    context_object_name = 'event'
+def home(request):
+    context = {'menu': menu, 'title': 'Главная'}
+    return render(request, 'index.html', context=context)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Главная страница')
-        return context | c_def
+
+def templates(request):
+    context = {'menu': menu, 'title': 'Шаблоны'}
+    return render(request, 'templates.html', context=context)
 
 
 def about(request):
@@ -85,10 +84,12 @@ class EventListView(DataMixin, ListView):
     model = Events
     template_name = 'events.html'
 
-    def get_queryset(self):
-        groups = Groups.objects.filter(persons=self.request.user)
-        events = Events.objects.filter(person=self.request.user)
-        return groups and events
+    def get(self, request,**kwargs):
+        group = Groups.objects.filter(persons=self.request.user)
+        events_p = Events.objects.filter(person=self.request.user)
+        events = Events.objects.filter(groups=group) | events_p
+
+        return render(request, 'events.html', {'events': events})
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

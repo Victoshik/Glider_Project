@@ -1,14 +1,16 @@
 html, body {
 	font-family: 'Arial';
+	color: #444;
 	margin: 0;
 	padding: 0;
 	height: 100%;
 	width: 100%;
-	color: #444;
+
 	width: 100%;
     height: 100%;
-	background: url(../images/fon14.png) center center no-repeat;
     background-size: cover;
+	background: url(../images/fon14.png) center;
+    background-repeat: repeat;
 
 }
 
@@ -607,4 +609,64 @@ margin: 30px 34%;
 }
 .img_wrap {
     text-align: left;
+}
+
+div#cardfan {
+	width: 500px;
+	height: 301px;
+	margin: 20px auto;
+}
+div#cardfan img {
+	width: 600px;
+	height: 401px;
+	border: 18px solid #ffe;
+	box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.2);
+}
+div#cardfan img {
+	width: 500px;
+	height: 301px;
+	border: 18px solid #ffe;
+	box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.2);
+	position: absolute;
+}
+div#cardfan:hover img:first-child {
+	transform: rotate(12deg);
+}
+div#cardfan:hover img:last-child {
+	transform: rotate(-12deg);
+}
+div#cardfan img {
+	width: 400px;
+	height: 301px;
+	border: 18px solid #ffe;
+	box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.2);
+	position: absolute;
+	transform-origin: center 500px;
+}
+
+h6 {
+color: #343536;
+font-family: ‘Droid serif’,serif;
+font-size: 20px;
+font-weight: normal;
+line-height: 30px;
+margin:0;
+text-align: center}
+
+h1 {
+color: #7a797d;
+font-family: ‘Droid serif’,serif;
+font-size: 70px;
+font-weight: normal;
+line-height: 30px;
+margin:0;
+text-align: center}
+
+html {
+  background:#ecf0f1;
+}
+canvas {
+  display:block;
+  margin:auto;
+
 }

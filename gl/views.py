@@ -84,12 +84,11 @@ class EventListView(DataMixin, ListView):
     model = Events
     template_name = 'events.html'
 
-    def get(self, request,**kwargs):
+    def get_queryset(self):
         group = Groups.objects.filter(persons=self.request.user)
-        events_p = Events.objects.filter(person=self.request.user)
-        events = Events.objects.filter(groups=group) | events_p
-
-        return render(request, 'events.html', {'events': events})
+        events_g = Events.objects.filter(groups__in=group)
+        events = Events.objects.filter(person=self.request.user)
+        return events | events_g
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

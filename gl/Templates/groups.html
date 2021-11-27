@@ -22,8 +22,8 @@
 {% endif %}
            <h5><a href='{% url "edit_group" i.pk %}'>Редактировать группу   |</a><a href="{% url 'delete_group' i.pk %}">Удалить группу</a></h5>
            <h5></h5>
-
+<hr>
 {% endfor %}
     </ul>
-<hr>
+
 {% endblock %}

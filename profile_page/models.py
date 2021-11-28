@@ -32,10 +32,11 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user) or ''
 
-    def get_absolute_url(self):
-        return reverse('profile', kwargs={'profile_id': self.pk})
 
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
         ordering = ['birth_date']
+
+    def get_absolute_url(self): # Тут мы создали новый метод
+        return reverse('profile_detail', args=[str(self.id)])

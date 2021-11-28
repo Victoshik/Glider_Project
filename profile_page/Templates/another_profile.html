@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <title>{{ title }}</title>
-<p><h1>Моя страница</h1></p>
 
 {% if profile.avatar %}
                     <div><p><img class="img-article-left thumb" src="{{ profile.avatar.url }}"></p></div>
@@ -9,8 +8,7 @@
                     <div><img src="/static/images/profile_121261.png" width="150" height="80"></div>
 {% endif %}
 
-
-                   <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                   <h3>{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
 
 
                     <p><b>Email:</b> {{ user.email }}</p>

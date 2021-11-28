@@ -25,7 +25,7 @@
 
     <p>Участники: </p>
         {% for j in i.person.all %}
-        <b><p id="main">- {{ j.username}}</p></b>
+    <p><a href="{% url 'profile_detail' j.pk %}">- {{ j.username}}</a></p>
     {% endfor %}
     {% endif %}
 

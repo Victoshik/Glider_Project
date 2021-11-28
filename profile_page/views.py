@@ -1,4 +1,3 @@
-
 from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -82,9 +81,19 @@ class ProfileUpdateView(DataMixin, UpdateView):
         c_def = self.get_user_context(title='Редактировать заметку')
         return context | c_def
 
+
 @login_required
 def personal(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
     template = "profile.html"
     return render(request, template, context={'menu': menu, 'profile': profile, 'title': 'Моя страница'})
 
+
+class AnotherProfile(DataMixin, DetailView):
+    model = Profile
+    template_name = 'another_profile.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Редактировать заметку')
+        return context | c_def

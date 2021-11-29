@@ -126,6 +126,7 @@ class EventDeleteView(DataMixin, DeleteView):
     template_name = 'delete_event.html'
     success_url = reverse_lazy('event')
 
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Удалить событие')
@@ -179,4 +180,14 @@ class GroupDeleteView(DataMixin, DeleteView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Удалить группу')
+        return context | c_def
+
+
+class GroupDetail(DataMixin, DetailView):
+    model = Groups
+    template_name = 'group_detail.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Группа')
         return context | c_def

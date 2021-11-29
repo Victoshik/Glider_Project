@@ -12,16 +12,23 @@
 
 
                     <p><b>Email:</b> {{ user.email }}</p>
-
+{% if profile.city != None %}
                     <p><b>Город:</b> {{ profile.city }}</p>
-
+{% else %}
+                    <p><b>Город:</b> Не выбрано</p>
+{% endif %}
+{% if profile.birth_date != None %}
                     <p><b>Дата рождения:</b> {{ profile.birth_date|date:"d M Y" }}</p>
-
+{% else %}
+                    <p><b>Дата рождения:</b> Не выбрано</p>
+{% endif %}
                     <p><b>Пол:</b> {{ profile.get_gender_display }}</p>
 
                     <p><b>Статус отношений:</b> {{ profile.get_relationship_display }}</p>
 
+{% if profile.bio != None %}
                     <p><b>О себе:</b>{{ profile.bio|linebreaks }}</p>
+{% endif %}
 
                 </dl>
             </div>

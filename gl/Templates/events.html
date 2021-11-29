@@ -18,7 +18,7 @@
     {% if i.groups %}
     <p>Группы: </p>
     {% for j in i.groups.all %}
-        <b><p id="main">- {{ j.title }}</p></b>
+    <p><a href="{% url 'group_detail' j.pk %}">- {{ j.title}}</a></p>
     {% endfor %}
     {% endif %}
     {% if i.person %}

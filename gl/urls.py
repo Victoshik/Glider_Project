@@ -20,6 +20,7 @@ urlpatterns = [
     path('group/<int:pk>/edit/', views.GroupUpdateView.as_view(), name='edit_group'),
     path('group/new/', views.GroupCreateView.as_view(), name='add_group'),
     path('group/', views.GroupListView.as_view(), name='group'),
+    path('group/<int:pk>/', views.GroupDetail.as_view(), name='group_detail'),
 
 ]
 
